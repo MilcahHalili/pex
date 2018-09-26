@@ -42,3 +42,7 @@ or
 
 `npm i immutable`  
 `npm i mocha`
+
+8. To run the test, type:
+
+`mocha`
