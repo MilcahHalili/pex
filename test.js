@@ -4,6 +4,8 @@ const assert = require('assert');
 
 function transformErrors(errors) {
   console.log(errors);
+  console.log('********************************')
+  console.log('name: ' + errors.get('name').join('') + '.');
   return Immutable.Map();
 }
 
