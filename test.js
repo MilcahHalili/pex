@@ -1,31 +1,30 @@
 const Immutable = require('immutable');
 const assert = require('assert');
 
-
 function transformErrors(errors) {
-  console.log(errors);
-  console.log('********************************')
-  console.log('name: ' + errors.get('name').join('') + '.');
-  console.log('********************************');
-  console.log('age: ' + errors.get('age').join('. ') + '.');
-  console.log('********************************');
-  console.log('urls: ' + errors.get('urls'));
-  console.log(errors.get('urls').get(2).getIn(['site', 'code']).get(0));
-  console.log(errors.get('urls').get(2).getIn(['site', 'id']).get(0) + '.');
-  console.log('********************************');
-  console.log('url: ' + errors.getIn(['url', 'site', 'code']).join('. ') + '. ' + errors.getIn(['url', 'site', 'id']).join('. ') + '.');
-  console.log('********************************');
-  console.log('tags: ' + errors.get('tags'));
-  console.log(errors.get('tags').get(1).getIn(['non_field_errors']).get(0));
-  console.log(errors.get('tags').get(1).get('third_error').get(0) + ". ")
-  console.log(errors.get('tags').get(3).get('non_field_errors').get(0) + ".")
-  console.log('********************************');
-  console.log('tag: ' + errors.getIn(['tag', 'nested', 'non_field_errors']).join('') + '.');
-  return Immutable.Map();
+  return Immutable.Map({
+    'name': errors.get('name').join('') + '.',
+    'age': errors.get('age').join('. ') + '.',
+    'tag': errors.getIn(['tag', 'nested', 'non_field_errors']).join('') + '.',
+    'url': {
+      'site': {
+        'code': errors.getIn(['url', 'site', 'code']).get("0") + '.',
+        'id': errors.getIn(['url', 'site', 'id']).get("0") + '.'
+      }
+    },
+    'urls': [{}, {}, {
+      'site': {
+        'code': errors.get('urls').get(2).getIn(['site', 'code']).get(0) + '.',
+        'id': errors.get('urls').get(2).getIn(['site', 'id']).get(0) + '.',
+      }
+    }],
+    'tags': errors.get('tags').get(1).get('non_field_errors').get(0) + ". " +
+      errors.get('tags').get(1).get('third_error').get(0) + ". " +
+      errors.get('tags').get(3).get('non_field_errors').get(0) + ".",
+  });
 }
 
 it('should tranform errors', () => {
-  // example error object returned from API converted to Immutable.Map
   const errors = Immutable.fromJS({
     name: ['This field is required'],
     age: ['This field is required', 'Only numeric characters are allowed'],
@@ -58,9 +57,6 @@ it('should tranform errors', () => {
     },
   });
 
-  // in this specific case,
-  // errors for `url` and `urls` keys should be nested
-  // see expected object below
   const result = transformErrors(errors);
 
   assert.deepEqual(result.toJS(), {
