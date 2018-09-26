@@ -6,6 +6,21 @@ function transformErrors(errors) {
   console.log(errors);
   console.log('********************************')
   console.log('name: ' + errors.get('name').join('') + '.');
+  console.log('********************************');
+  console.log('age: ' + errors.get('age').join('. ') + '.');
+  console.log('********************************');
+  console.log('urls: ' + errors.get('urls'));
+  console.log(errors.get('urls').get(2).getIn(['site', 'code']).get(0));
+  console.log(errors.get('urls').get(2).getIn(['site', 'id']).get(0) + '.');
+  console.log('********************************');
+  console.log('url: ' + errors.getIn(['url', 'site', 'code']).join('. ') + '. ' + errors.getIn(['url', 'site', 'id']).join('. ') + '.');
+  console.log('********************************');
+  console.log('tags: ' + errors.get('tags'));
+  console.log(errors.get('tags').get(1).getIn(['non_field_errors']).get(0));
+  console.log(errors.get('tags').get(1).get('third_error').get(0) + ". ")
+  console.log(errors.get('tags').get(3).get('non_field_errors').get(0) + ".")
+  console.log('********************************');
+  console.log('tag: ' + errors.getIn(['tag', 'nested', 'non_field_errors']).join('') + '.');
   return Immutable.Map();
 }
 
