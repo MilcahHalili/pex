@@ -12,14 +12,25 @@ Concatenate all strings for each object key and separate each string with a dot 
 1. Download the zip file from [here](https://github.com/MilcahHalili/pex).
 2. Unzip file.
 3. In terminal, type:
+
 `mkdir *yourDirectoryName* && cd *yourDirectoryName*`
+
 4. Copy unzipped file to your newly-created directory.
 5. In terminal, confirm that you have the minimum node version installed by typing:
-`node -v`
+
+`node -v`  
 `v8.4.0`
-6. If you have installed Node, then type the following in *youDirectoryName*:
+
+6. If you have installed Node, then type the following in *yourDirectoryName*:
+
 `npm init`
+
 7. If you haven't installed Immutable or Mocha, then type:
-`npm install immutable npm install mocha`
+
+`npm install immutable`  
+`npm install mocha`
+
 or
-`npm i immutable npm i mocha`
+
+`npm i immutable`  
+`npm i mocha`
