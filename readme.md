@@ -21,6 +21,14 @@ Concatenate all strings for each object key and separate each string with a dot 
 `node -v`  
 `v8.4.0`
 
+If you don't have Node, then type:
+
+`npm install node`
+
+or
+
+`npm i node`
+
 6. If you have installed Node, then type the following in *yourDirectoryName*:
 
 `npm init`
