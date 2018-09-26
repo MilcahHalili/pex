@@ -1,0 +1,15 @@
+{
+  "name": "pex",
+  "version": "1.0.0",
+  "description": "take-home technical challenge",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "milcah halili centeno",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^3.8.2",
+    "mocha": "^5.2.0"
+  }
+}
